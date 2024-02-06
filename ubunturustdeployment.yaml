@@ -1,0 +1,15 @@
+# dindrunnerdeployment.yaml
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: ubuntu-rust-cross-compiler
+  namespace: actions-runner-system
+spec:
+  replicas: 1
+  template:
+    spec:
+      labels:
+        - self-hosted-cross-platform-linux
+      image: summerwind/actions-runner:ubuntu-22.04
+      organization: hadeaninc
+      env: []

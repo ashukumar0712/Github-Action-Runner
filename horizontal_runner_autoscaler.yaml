@@ -1,0 +1,16 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: horizontal-runner-autoscaler-dev   # change name accordingly
+  namespace: actions-runner-system
+spec:
+  scaleTargetRef:
+    kind: RunnerDeployment
+    name: k8s-dind-action-runner     # Name of RunnerDeployment
+  minReplicas: 0
+  maxReplicas: 2
+  metrics:
+  - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+    repositoryNames:
+    - platform-scaling-backend
+    - meta-zircon
